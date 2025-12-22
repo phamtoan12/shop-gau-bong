@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý - Shop Gấu Bông</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="loadAdmin()">
+  <header>
+    <div class="logo">Quản lý Shop Gấu Bông</div>
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="#" onclick="logout()">Đăng xuất</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Quản lý (Admin)</h1>
+    <p>Admin mặc định: admin / 123</p>
+
+    <h2>Thêm sản phẩm</h2>
+    <input id="p-name" placeholder="Tên gấu bông">
+    <input id="p-price" type="number" placeholder="Giá (VND)">
+    <input id="p-desc" placeholder="Mô tả">
+    <input id="p-img" placeholder="Link hình (tùy chọn)">
+    <button onclick="addProduct()">Thêm</button>
+
+    <h2>Kho gấu bông</h2>
+    <div id="admin-products" class="product-list"></div>
+
+    <h2>Danh sách khách hàng</h2>
+    <div id="customer-list" class="customer-list"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Gấu Bông</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="showProducts(); checkLogin();">
+  <header>
+    <div class="logo">Shop Gấu Bông</div>
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="#" onclick="toggleForm('login-form')">Đăng nhập</a>
+      <a href="#" onclick="toggleForm('register-form')">Đăng ký</a>
+      <a href="admin.html">Quản lý</a>
+      <span id="user-info"></span>
+      <a href="#" id="logout-btn" class="hidden" onclick="logout()">Đăng xuất</a>
+      <a href="#" onclick="forgotPassword()">Quên mật khẩu?</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Chào mừng đến Shop Gấu Bông!</h1>
+
+    <div id="login-form" class="hidden">
+      <h2>Đăng nhập</h2>
+      <input type="text" id="login-username" placeholder="Tên đăng nhập">
+      <input type="password" id="login-password" placeholder="Mật khẩu">
+      <button onclick="login()">Đăng nhập</button>
+    </div>
+
+    <div id="register-form" class="hidden">
+      <h2>Đăng ký</h2>
+      <input type="text" id="reg-username" placeholder="Tên đăng nhập">
+      <input type="password" id="reg-password" placeholder="Mật khẩu">
+      <button onclick="register()">Đăng ký</button>
+    </div>
+
+    <h2>Sản phẩm Gấu Bông</h2>
+    <div id="product-list" class="product-list"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
