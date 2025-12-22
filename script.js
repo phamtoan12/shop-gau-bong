@@ -4,13 +4,46 @@ function toggleForm(id) {
 
 // Sản phẩm
 let products = localStorage.getItem("products") ? JSON.parse(localStorage.getItem("products")) : [
-  { id: 1, name: "Gấu Teddy Nâu", price: 250000, desc: "Mềm mại, cao 40cm", img: "https://loremflickr.com/300/300/teddybear?random=1" },
-  { id: 2, name: "Gấu Hồng", price: 300000, desc: "Dễ thương với trái tim", img: "https://loremflickr.com/300/300/teddybear?random=2" },
-  { id: 3, name: "Gấu Khổng Lồ", price: 500000, desc: "Cao 1m, ôm thích", img: "https://loremflickr.com/300/300/teddybear?random=3" }
+  { 
+    id: 1, 
+    name: "Gấu Teddy Nâu Giá Rẻ", 
+    price: 199000, 
+    desc: "Gấu nâu dễ thương với price tag, quà tặng giá tốt.", 
+    img: "https://m.media-amazon.com/images/I/41ICC+MoswL.jpg"  // Amazon 3-pack teddy
+  },
+  { 
+    id: 2, 
+    name: "Gấu Với Price Tag Trắng", 
+    price: 250000, 
+    desc: "Gấu trắng kèm price tag và hộp quà, đẹp lung linh.", 
+    img: "https://media.istockphoto.com/id/667920490/photo/cute-teddy-bear-with-price-tag-and-beautiful-gift-on-the-wonderful-white-background.jpg?s=1024x1024&w=is&k=20&c=-JEjRAZXGV4hryBgoEp1MpXWSbySn3rDfEyNuO9KfAU="  // iStock price tag
+  },
+  { 
+    id: 3, 
+    name: "Gấu Khổng Lồ Nâu", 
+    price: 450000, 
+    desc: "Gấu lớn 59 inch với price tag rõ ràng.", 
+    img: "https://i.ebayimg.com/images/g/BC4AAOSwhL1mgi2k/s-l400.jpg"  // eBay giant teddy
+  },
+  { 
+    id: 4, 
+    name: "Gấu Cặp Đôi Dễ Thương", 
+    price: 350000, 
+    desc: "Cặp gấu ôm nhau, kèm price tag.", 
+    img: "https://i.ebayimg.com/00/s/MTEwN1gxNTk5/z/cTgAAOSwkv5jgOjb/$_3.JPG"  // eBay couple teddy
+  },
+  { 
+    id: 5, 
+    name: "Gấu Trắng Với Price Tag", 
+    price: 299000, 
+    desc: "Gấu trắng mềm mại kèm price tag nổi bật.", 
+    img: "https://live.staticflickr.com/5058/5442006498_79109136be.jpg"  // Clearance teddy with tag
+  }
 ];
 localStorage.setItem("products", JSON.stringify(products));
 
 // Hiển thị sản phẩm
+
 function showProducts() {
   const container = document.getElementById("product-list");
   if (!container) return;
