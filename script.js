@@ -249,4 +249,47 @@ function showProducts() {
       </div>
     `;
   });
+}// Thêm trường stock (số lượng tồn kho) cho sản phẩm
+// Nếu chưa có stock, mặc định 50 con mỗi loại
+products.forEach(p => {
+  if (p.stock === undefined) p.stock = 50 + Math.floor(Math.random() * 50); // 50-100 con
+});
+localStorage.setItem("products", JSON.stringify(products));
+
+// Load trang tồn kho (chỉ admin)
+function loadInventory() {
+  const user = localStorage.getItem("currentUser");
+  if (!user || JSON.parse(user).role !== "admin") {
+    alert("Bạn không có quyền xem trang này!");
+    location.href = "index.html";
+    return;
+  }
+
+  const container = document.getElementById("inventory-list");
+  container.innerHTML = "";
+  products.forEach(p => {
+    container.innerHTML += `
+      <div class="product">
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>Giá: ${p.price.toLocaleString()} VND</p>
+        <p><strong>Tồn kho: ${p.stock} con</strong></p>
+        <button onclick="updateStock(${p.id}, 10)">+10 con</button>
+        <button onclick="updateStock(${p.id}, -10)">-10 con</button>
+      </div>
+    `;
+  });
+}
+
+// Cập nhật số lượng tồn kho
+function updateStock(id, change) {
+  const p = products.find(x => x.id === id);
+  if (p) {
+    p.stock += change;
+    if (p.stock < 0) p.stock = 0;
+    localStorage.setItem("products", JSON.stringify(products));
+    alert(`Cập nhật tồn kho ${p.name}: ${p.stock} con`);
+    loadInventory();
+    if (typeof showProducts === "function") showProducts(); // Cập nhật trang chủ nếu cần
+  }
 }

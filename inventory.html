@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hàng Tồn Kho - Shop Gấu Bông</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="loadInventory(); checkLogin();">
+  <header>
+    <div class="logo">Hàng Tồn Kho</div>
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="admin.html">Quản lý sản phẩm</a>
+      <a href="#" onclick="logout()">Đăng xuất</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Quản Lý Hàng Tồn Kho (Chỉ Admin)</h1>
+    <p>Chỉ admin mới xem được trang này.</p>
+
+    <h2>Danh sách tồn kho</h2>
+    <div id="inventory-list" class="product-list"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
