@@ -219,3 +219,34 @@ function showCustomers() {
     `;
   });
 }
+// Giỏ hàng đơn giản
+function addToCart(id) {
+  if (!localStorage.getItem("currentUser")) return alert("Vui lòng đăng nhập để mua hàng!");
+  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const existing = cart.find(item => item.id === id);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({ id, quantity: 1 });
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Đã thêm vào giỏ hàng!");
+}
+
+// Sửa hàm showProducts để thêm nút "Mua hàng"
+function showProducts() {
+  const container = document.getElementById("product-list");
+  if (!container) return;
+  container.innerHTML = "";
+  products.forEach(p => {
+    container.innerHTML += `
+      <div class="product">
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p><strong>${p.price.toLocaleString()} VND</strong></p>
+        <button onclick="viewDetail(${p.id})">Chi tiết</button>
+        <button onclick="addToCart(${p.id})">Thêm vào giỏ</button>
+      </div>
+    `;
+  });
+}

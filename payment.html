@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thanh Toán - Shop Gấu Bông</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="loadCart(); checkLogin();">
+  <header>
+    <div class="logo">Shop Gấu Bông</div>
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="index.html">Sản phẩm</a>
+      <a href="admin.html">Quản lý</a>
+      <span id="user-info"></span>
+      <a href="#" id="logout-btn" class="hidden" onclick="logout()">Đăng xuất</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Thanh Toán Đơn Hàng</h1>
+
+    <h2>Giỏ hàng của bạn</h2>
+    <div id="cart-items" class="product-list"></div>
+    <p><strong>Tổng tiền: <span id="total-price">0</span> VND</strong></p>
+
+    <h2>Thông tin thanh toán</h2>
+    <form id="payment-form">
+      <input type="text" placeholder="Họ và tên" required>
+      <input type="text" placeholder="Số thẻ tín dụng (giả lập: 4111111111111111)" required>
+      <input type="text" placeholder="MM/YY" required>
+      <input type="text" placeholder="CVV (giả lập: 123)" required>
+      <input type="text" placeholder="Địa chỉ giao hàng" required>
+      <button type="submit">Thanh toán ngay</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Load giỏ hàng (giả lập từ localStorage)
+    function loadCart() {
+      let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      const container = document.getElementById("cart-items");
+      let total = 0;
+      container.innerHTML = "";
+      if (cart.length === 0) {
+        container.innerHTML = "<p>Giỏ hàng trống! <a href='index.html'>Mua sắm ngay</a></p>";
+        return;
+      }
+      cart.forEach(item => {
+        const p = products.find(pr => pr.id === item.id);
+        if (p) {
+          total += p.price * item.quantity;
+          container.innerHTML += `
+            <div class="product">
+              <img src="${p.img}" alt="${p.name}">
+              <h3>${p.name}</h3>
+              <p>Giá: ${p.price.toLocaleString()} VND x ${item.quantity}</p>
+            </div>
+          `;
+        }
+      });
+      document.getElementById("total-price").innerText = total.toLocaleString();
+    }
+
+    // Xử lý thanh toán giả lập
+    document.getElementById("payment-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Thanh toán thành công! Cảm ơn bạn đã mua gấu bông. Đơn hàng sẽ giao trong 3-5 ngày.");
+      localStorage.removeItem("cart"); // Xóa giỏ hàng
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
